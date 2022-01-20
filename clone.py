@@ -33,6 +33,7 @@ def mega_ls():
 
 def main():
     # os.popen('$env:PATH += ";$env:LOCALAPPDATA\MEGAcmd"')
+    logout()
     print('Logging in...')
     login(email, password)
     print('Importing file...')
