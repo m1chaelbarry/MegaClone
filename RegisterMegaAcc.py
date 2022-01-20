@@ -3,7 +3,7 @@ from faker.providers import person, internet, misc
 import os, re, time
 import http.client
 
-Mailsac_Api_Key = 'API-KEY-HERE'
+Mailsac_Api_Key = 'API-KEY-HERE' #  <<<<<<<<<<<<<<ADD KEY HERE!!!
 
 fake = Faker()
 gen_email = fake.lexify(text='??????????@mailsac.com')
