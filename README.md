@@ -15,3 +15,6 @@ Usage:
 `python.exe .\RegisterMegaAcc.py`
 
 `python.exe .\clone.py <Mega-Link>`
+
+
+![Screenshot](https://user-images.githubusercontent.com/69900794/150320653-2c973337-3ba8-4aff-9b8f-0969e5edfa3c.png)
