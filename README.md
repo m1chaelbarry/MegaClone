@@ -4,7 +4,7 @@ you need to
 
 also install `megatools (on Windows I've downloaded it from chocolatey)` AND `megacmd from https://mega.nz/cmd` and add them to PATH
 
-in RegisterMegaAcc.py add your mailsac API key
+in RegisterMegaAcc.py add your [mailsac API key](https://mailsac.com/docs/api)
 
 RegisterMegaAcc.py makes mega.nz account for you, and adds it to creds.txt file
 
