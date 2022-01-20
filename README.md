@@ -2,7 +2,7 @@
 you need to 
 `pip install -r requirements.txt`
 
-also install `megatools` AND `megacmd` and add it to PATH
+also install `megatools (on Windows I've downloaded it from chocolatey)` AND `megacmd from https://mega.nz/cmd` and add them to PATH
 
 in RegisterMegaAcc.py add your mailsac API key
 
