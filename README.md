@@ -6,7 +6,7 @@ also install `megatools (on Windows I've downloaded it from chocolatey)` AND `me
 
 in RegisterMegaAcc.py add your [mailsac API key](https://mailsac.com/docs/api)
 
-MegacmdServer should be running in background, but you shouldnt be logged in to any account
+MegacmdServer should be running in background, but you shouldnt be logged into any account
 
 RegisterMegaAcc.py makes mega.nz account for you, and adds it to creds.txt file
 
