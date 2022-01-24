@@ -3,12 +3,15 @@ from faker.providers import person, internet, misc
 import os, re, time
 import http.client
 
-Mailsac_Api_Key = 'API-KEY-HERE' #  <<<<<<<<<<<<<<ADD KEY HERE!!!
+Mailsac_Api_Key = '<API-KEY>'
 
 fake = Faker()
-gen_email = fake.lexify(text='??????????@mailsac.com')
-gen_name = fake.name()
-gen_password = fake.password(length=12)
+
+def generateCreds():
+    gen_email = fake.lexify(text='??????????@mailsac.com')
+    gen_password = fake.password(length=12)
+    gen_name = fake.name()
+    return(gen_email, gen_password, gen_name)
 
 def registerAcc(email, name, password):
     stream = os.popen(f'megatools reg --scripted --register --email {email} --name {name} --password {password}')
@@ -58,7 +61,18 @@ def VerifyAcc(command, link):
     output = stream.read()
     return(output) 
 
+
+
+def AppendToFile():
+    # register()
+    readable = f'{str(register())}\n\n'
+    print(readable)
+    file_object = open('creds.txt', 'a')
+    file_object.write(readable)
+    file_object.close()
+    
 def register():
+    gen_email, gen_password, gen_name  = generateCreds()
     # print(f"email: {gen_email}, name: {gen_name}, password: {gen_password}.")  
     verify = registerAcc(gen_email, gen_name, gen_password)
     GetEmailID(gen_email)
@@ -68,16 +82,6 @@ def register():
     VerifyAcc(verify, link)
     Credentials = [gen_email, gen_password]
     return(Credentials)
-
-def AppendToFile():
-    register()
-    readable = f'{gen_email}:{gen_password}\n'
-    print(readable)
-    file_object = open('creds.txt', 'a')
-    file_object.write(readable)
-    file_object.close()
-    
-
 
 if __name__ == "__main__":
     AppendToFile()

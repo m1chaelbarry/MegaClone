@@ -31,13 +31,12 @@ def mega_ls():
     output = stream.read()
     return(output) 
 
-def main():
+def clone(_link, _email, _password):
     # os.popen('$env:PATH += ";$env:LOCALAPPDATA\MEGAcmd"')
-    logout()
     print('Logging in...')
-    login(email, password)
+    login(_email, _password)
     print('Importing file...')
-    import_file(link)
+    import_file(_link)
     filename = f"'{mega_ls()}'"
     print(filename)
     export_file(filename)
@@ -46,4 +45,4 @@ def main():
     
 
 if __name__ == "__main__":
-    main()
+    clone(link, email, password)
