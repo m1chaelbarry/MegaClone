@@ -2,11 +2,15 @@ from faker import Faker
 from faker.providers import person, internet, misc
 import os, re, time
 import http.client
-import config
+from clint import resources
 
+resources.init('michaelbarry', 'MegaClone')
+Mailsac_Api_Key = resources.user.read('api-key.txt')
 
-
-Mailsac_Api_Key = config.Mailsac_Api_Key
+if Mailsac_Api_Key == None or 'api-key':
+    print('%s created.' % resources.user.path, 'write your api key here')
+    resources.user.write('api-key.txt', "api_key")
+    exit()
 
 fake = Faker()
 
