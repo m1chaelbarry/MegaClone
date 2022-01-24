@@ -1,6 +1,6 @@
 from RegisterMegaAcc import register, ExtractURL
 import clone 
-import os, sys
+import os, sys, re
 
 
 # upload.py <path>
@@ -47,6 +47,12 @@ def mega_copy(path, email, password):
     print(output)
     return(output) 
 
+def log(_filename, Omail, Opass, Olink, Mmail, Mpass, Mlink):
+    filename = _filename.strip("\'\n")
+    print('Creating log file')
+    file_object = open(f'Export_log_{filename}.txt', 'w')
+    file_object.write(f'#### EXPORT LOG ####\nFile: {filename}\nOriginal:\n    {Omail}\n    {Opass}\n    {Olink}\nMirror:\n    {Mmail}\n    {Mpass}\n    {Mlink}')
+    file_object.close()
 
 if __name__ == "__main__":
     
@@ -57,9 +63,12 @@ if __name__ == "__main__":
 
     clone.logout()
     clone.login(O_email, O_password)
-    filename = f"'{clone.mega_ls()}'"
+    filename = (f"'{clone.mega_ls()}'")
     print(filename)
     exported_link = ExtractURL(clone.export_file(filename))
     clone.logout()
 
-    clone.clone(exported_link, M_email, M_password)
+    mirror_link = ExtractURL(clone.clone(exported_link, M_email, M_password))
+
+
+    log(filename, O_email, O_password, exported_link, M_email, M_password, mirror_link)

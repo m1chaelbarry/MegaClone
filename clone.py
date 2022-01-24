@@ -1,4 +1,4 @@
-from RegisterMegaAcc import register
+from RegisterMegaAcc import ExtractURL, register
 import os, sys
 
 
@@ -39,9 +39,10 @@ def clone(_link, _email, _password):
     import_file(_link)
     filename = f"'{mega_ls()}'"
     print(filename)
-    export_file(filename)
+    mirror_link = ExtractURL(export_file(filename))
     print('Logging out...')
     logout()
+    return(mirror_link)
     
 
 if __name__ == "__main__":

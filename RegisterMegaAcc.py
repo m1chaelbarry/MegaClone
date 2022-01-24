@@ -1,3 +1,4 @@
+from tracemalloc import start
 from faker import Faker
 from faker.providers import person, internet, misc
 import os, re, time
@@ -14,7 +15,7 @@ def generateCreds():
     return(gen_email, gen_password, gen_name)
 
 def registerAcc(email, name, password):
-    stream = os.popen(f'megatools reg --scripted --register --email {email} --name {name} --password {password}')
+    stream = os.popen(f'megatools reg --scripted --register --email "{email}" --name "{name}" --password "{password}"')
     output = stream.read()
     return(output) 
 
@@ -61,7 +62,8 @@ def VerifyAcc(command, link):
     output = stream.read()
     return(output) 
 
-
+def startcmdserver():
+    os.popen(f'mega-whoami')
 
 def AppendToFile():
     # register()
@@ -72,6 +74,7 @@ def AppendToFile():
     file_object.close()
     
 def register():
+    startcmdserver()
     gen_email, gen_password, gen_name  = generateCreds()
     # print(f"email: {gen_email}, name: {gen_name}, password: {gen_password}.")  
     verify = registerAcc(gen_email, gen_name, gen_password)
