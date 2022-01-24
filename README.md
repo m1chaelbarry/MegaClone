@@ -20,4 +20,4 @@ Usage:
 
 `python.exe .\upload.py <path to file or directory>`
 
-![Screenshot](https://user-images.githubusercontent.com/69900794/150320653-2c973337-3ba8-4aff-9b8f-0969e5edfa3c.png)
+![upload.py](https://user-images.githubusercontent.com/69900794/150818982-8d257269-621e-4ac7-a2d8-db4495a3d05b.png)
