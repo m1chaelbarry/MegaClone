@@ -1,10 +1,12 @@
-from tracemalloc import start
 from faker import Faker
 from faker.providers import person, internet, misc
 import os, re, time
 import http.client
+import config
 
-Mailsac_Api_Key = 'API-KEY-HERE'
+
+
+Mailsac_Api_Key = config.Mailsac_Api_Key
 
 fake = Faker()
 
@@ -67,7 +69,7 @@ def startcmdserver():
 
 def AppendToFile():
     # register()
-    readable = f'{str(register())}\n\n'
+    readable = f'{str(register())}'
     print(readable)
     file_object = open('creds.txt', 'a')
     file_object.write(readable)
