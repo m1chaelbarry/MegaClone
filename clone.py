@@ -4,7 +4,7 @@ import os, sys
 
 link = sys.argv[1]
 email, password = register()
-print(f'Credentials:\n{email}, {password}')
+# print(f'Credentials:\n{email}, {password}')
 def login(email, password):
     stream = os.popen(f'mega-login {email} {password}')
     output = stream.read()
