@@ -4,12 +4,12 @@ from faker.providers import person, internet, misc
 import os, re, time
 import http.client
 
-Mailsac_Api_Key = '<API-KEY>'
+Mailsac_Api_Key = 'API-KEY-HERE'
 
 fake = Faker()
 
 def generateCreds():
-    gen_email = fake.lexify(text='??????????@mailsac.com')
+    gen_email = fake.lexify(text='????????????@mailsac.com')
     gen_password = fake.password(length=12)
     gen_name = fake.name()
     return(gen_email, gen_password, gen_name)
@@ -33,7 +33,7 @@ def GetEmailID(email):
     extracted_id = str(extracted_id[2:-2])
     # print(extracted_id)
     if len(extracted_id) == 0:
-        time.sleep(5)
+        time.sleep(8)
         GetEmailID(email)
     
     return(extracted_id)
