@@ -1,1 +1,3 @@
-api.py
+config.py
+creds.txt
+__pycache__
