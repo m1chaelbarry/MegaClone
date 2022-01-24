@@ -37,7 +37,7 @@ def main():
     login(email, password)
     print('Importing file...')
     import_file(link)
-    filename = mega_ls()
+    filename = f"'{mega_ls()}'"
     print(filename)
     export_file(filename)
     print('Logging out...')
