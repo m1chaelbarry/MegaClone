@@ -1,1 +1,0 @@
-Mailsac_Api_Key = 'api key here'
