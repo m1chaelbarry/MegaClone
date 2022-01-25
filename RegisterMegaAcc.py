@@ -80,6 +80,7 @@ def AppendToFile():
     file_object.close()
     
 def register():
+    print('Registering account')
     startcmdserver()
     gen_email, gen_password, gen_name  = generateCreds()
     # print(f"email: {gen_email}, name: {gen_name}, password: {gen_password}.")  
