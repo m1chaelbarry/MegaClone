@@ -1,3 +1,6 @@
+![megaclone](https://user-images.githubusercontent.com/69900794/150953918-be777d95-a346-4f32-9321-e2c7051ba57b.png)
+
+
 # MegaClone
 you need to 
 `pip install -r requirements.txt`
