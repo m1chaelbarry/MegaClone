@@ -5,7 +5,7 @@ import http.client
 from clint import resources
 
 resources.init('michaelbarry', 'MegaClone')
-Mailsac_Api_Key = resources.user.read('api-key.txt')
+Mailsac_Api_Key = resources.user.read('api-key.txt').strip()
 
 if resources.user.read('api-key.txt') == None:
     print('%s created.' % resources.user.path, 'write your api key here')
@@ -80,7 +80,6 @@ def AppendToFile():
     file_object.close()
     
 def register():
-    print('Registering account')
     startcmdserver()
     gen_email, gen_password, gen_name  = generateCreds()
     # print(f"email: {gen_email}, name: {gen_name}, password: {gen_password}.")  

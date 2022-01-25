@@ -7,7 +7,7 @@ from upload import upload
 resources.init('michaelbarry', 'MegaClone')
 
 def checkApiKey():
-    Mailsac_Api_Key = resources.user.read('api-key.txt')
+    Mailsac_Api_Key = resources.user.read('api-key.txt').strip()
     if resources.user.read('api-key.txt') == None:
         Mailsac_Api_Key = prompt.query("Your api key >>")
         print('%s created.' % resources.user.path)
