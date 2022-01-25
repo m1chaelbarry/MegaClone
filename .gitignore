@@ -2,3 +2,6 @@ config.py
 creds.txt
 __pycache__
 Export_log_*
+build
+dist
+*.spec
