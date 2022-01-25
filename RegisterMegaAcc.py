@@ -7,9 +7,9 @@ from clint import resources
 resources.init('michaelbarry', 'MegaClone')
 Mailsac_Api_Key = resources.user.read('api-key.txt')
 
-if Mailsac_Api_Key == None or 'api-key':
+if resources.user.read('api-key.txt') == None:
     print('%s created.' % resources.user.path, 'write your api key here')
-    resources.user.write('api-key.txt', "api_key")
+    resources.user.write('api-key.txt', "api-key")
     exit()
 
 fake = Faker()
