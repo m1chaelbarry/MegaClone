@@ -27,3 +27,6 @@ Also there is exe file in [releases](https://github.com/m1chaelbarry/MegaClone/r
 `python.exe .\upload.py <path to file or directory>`
 
 ![upload.py](https://user-images.githubusercontent.com/69900794/150818982-8d257269-621e-4ac7-a2d8-db4495a3d05b.png)
+
+### Contact
+Discord: michaelbarry#6568
