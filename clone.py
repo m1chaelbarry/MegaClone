@@ -2,8 +2,7 @@ from RegisterMegaAcc import ExtractURL, register
 import os, sys
 
 
-link = sys.argv[1]
-email, password = register()
+
 # print(f'Credentials:\n{email}, {password}')
 def login(email, password):
     stream = os.popen(f'mega-login {email} {password}')
@@ -46,4 +45,6 @@ def clone(_link, _email, _password):
     
 
 if __name__ == "__main__":
+    link = sys.argv[1]
+    email, password = register()
     clone(link, email, password)
