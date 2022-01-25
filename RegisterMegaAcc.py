@@ -74,7 +74,7 @@ def startcmdserver():
 def AppendToFile():
     gen_email, gen_password = register()
     readable = f'{gen_email}:{gen_password}\n'
-    print(readable)
+    print(f'{gen_email}:{gen_password}')
     file_object = open('creds.txt', 'a')
     file_object.write(readable)
     file_object.close()
