@@ -1,6 +1,6 @@
 from faker import Faker
 from faker.providers import person, internet, misc
-import os, re, time
+import os, re, time, sys
 import http.client
 from clint import resources
 
@@ -72,8 +72,8 @@ def startcmdserver():
     os.popen(f'mega-whoami')
 
 def AppendToFile():
-    # register()
-    readable = f'{str(register())}'
+    gen_email, gen_password = register()
+    readable = f'{gen_email}:{gen_password}\n'
     print(readable)
     file_object = open('creds.txt', 'a')
     file_object.write(readable)
@@ -94,4 +94,9 @@ def register():
     return(Credentials)
 
 if __name__ == "__main__":
-    AppendToFile()
+    if len(sys.argv) == 2:
+        amount = int(sys.argv[1])
+        for _ in range(amount):
+            AppendToFile()
+    else:
+        AppendToFile()
