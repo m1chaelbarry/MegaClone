@@ -16,7 +16,7 @@ upload.py uploads file or directory to new "Original" account, then imports it t
 
 Also there is exe file in [releases](https://github.com/m1chaelbarry/MegaClone/releases/), its megaclone.py compiled with PyyInstaller
 
-#Usage:
+## Usage:
 
 `python.exe .\megaclone.py`
 
