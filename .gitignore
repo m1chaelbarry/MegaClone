@@ -7,3 +7,4 @@ dist
 *.spec
 test.py
 *.log
+api-key.txt
