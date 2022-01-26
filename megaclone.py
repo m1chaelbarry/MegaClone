@@ -28,6 +28,8 @@ def Logo():
     puts(colored.red('                       \$$$$$$  |                                                      '))
     puts(colored.red('                        \______/                                                       '))
     print()
+    puts(colored.red('Version: 0.1.1'))
+    print()
 
 def reg_handler():
     with indent(5, quote=colored.cyan(' |')):
