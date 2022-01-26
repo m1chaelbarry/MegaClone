@@ -78,14 +78,23 @@ def AppendToFile():
     file_object = open('creds.txt', 'a')
     file_object.write(readable)
     file_object.close()
+
+def get_verify_link(_gen_email):
+    GetEmailID(_gen_email)
+    mail_content = GetEmailContentFromID(_gen_email, GetEmailID(_gen_email))
+    try:
+        link = (ExtractURL(mail_content))
+    except AttributeError:
+        get_verify_link(_gen_email)
+    return(link)
+
     
 def register():
     startcmdserver()
     gen_email, gen_password, gen_name  = generateCreds()
     # print(f"email: {gen_email}, name: {gen_name}, password: {gen_password}.")  
     verify = registerAcc(gen_email, gen_name, gen_password)
-    GetEmailID(gen_email)
-    link = (ExtractURL(GetEmailContentFromID(gen_email, GetEmailID(gen_email))))
+    link = get_verify_link(gen_email)
     # print(verify)
     # print(link)
     VerifyAcc(verify, link)
