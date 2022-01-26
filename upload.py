@@ -16,15 +16,15 @@ import os, sys, re, time
 # file_object.close()
 
 def mega_put(path, email, password):
+    print('Uploading file...')
     stream = os.popen(f'megatools put "{path}" -u "{email}" -p "{password}"')
     output = stream.read()
-    print(output)
     return(output) 
 
 def mega_copy(path, email, password):
+    print('Uploading dir...')
     stream = os.popen(f'megatools copy -l "{path}" -r /Root -u "{email}" -p "{password}"')
     output = stream.read()
-    print(output)
     return(output) 
 
 def log(_filename, Omail, Opass, Olink, Mmail, Mpass, Mlink):
