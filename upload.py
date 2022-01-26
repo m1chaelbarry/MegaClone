@@ -29,11 +29,6 @@ def log(_filename, Omail, Opass, Olink, Mmail, Mpass, Mlink):
     file_object.close()
 
 def upload(_path, _O_email, _O_password, _M_email, _M_password):
-    #checks if path is a file
-    isFile = os.path.isfile(_path)
-    #checks if path is a directory
-    isDirectory = os.path.isdir(_path)
-
     clone.logout()
     clone.login(_O_email, _O_password)
     mega_put(_path)
