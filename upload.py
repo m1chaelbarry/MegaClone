@@ -48,7 +48,7 @@ def upload(_path, _O_email, _O_password, _M_email, _M_password):
         mega_copy(_path, _O_email, _O_password)
     clone.logout()
     clone.login(_O_email, _O_password)
-    filename = (f"'{clone.mega_ls()}'")
+    filename = str(clone.mega_ls())
     print(filename)
     exported_link = ExtractURL(clone.export_file(filename))
     clone.logout()
