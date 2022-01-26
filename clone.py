@@ -36,7 +36,7 @@ def clone(_link, _email, _password):
     login(_email, _password)
     print('Importing file...')
     import_file(_link)
-    filename = f"'{mega_ls()}'"
+    filename = str(mega_ls()).strip()
     print(filename)
     mirror_link = ExtractURL(export_file(filename))
     print('Logging out...')
