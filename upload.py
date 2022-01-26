@@ -15,15 +15,9 @@ import os, sys, re, time
 # file_object.write(readable)
 # file_object.close()
 
-def mega_put(path, email, password):
+def mega_put(path):
     print('Uploading file...')
-    stream = os.popen(f'megatools put "{path}" -u "{email}" -p "{password}"')
-    output = stream.read()
-    return(output) 
-
-def mega_copy(path, email, password):
-    print('Uploading dir...')
-    stream = os.popen(f'megatools copy -l "{path}" -r /Root -u "{email}" -p "{password}"')
+    stream = os.popen(f'mega-put -c --ignore-quota-warn "{path}"')
     output = stream.read()
     return(output) 
 
@@ -40,14 +34,9 @@ def upload(_path, _O_email, _O_password, _M_email, _M_password):
     #checks if path is a directory
     isDirectory = os.path.isdir(_path)
 
-    print(f'Is File: {isFile}')
-    print(f'Is Directory: {isDirectory}')
-    if isFile == True:
-        mega_put(_path, _O_email, _O_password)
-    elif isDirectory == True:
-        mega_copy(_path, _O_email, _O_password)
     clone.logout()
     clone.login(_O_email, _O_password)
+    mega_put(_path)
     filename = str(clone.mega_ls())
     print(filename)
     exported_link = ExtractURL(clone.export_file(filename))
