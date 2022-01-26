@@ -39,7 +39,7 @@ def GetEmailID(email):
     extracted_id = str(extracted_id[2:-2])
     # print(extracted_id)
     if len(extracted_id) == 0:
-        time.sleep(8)
+        time.sleep(5)
         GetEmailID(email)
     
     return(extracted_id)
