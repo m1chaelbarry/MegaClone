@@ -5,7 +5,7 @@ import os, sys
 
 # print(f'Credentials:\n{email}, {password}')
 def login(email, password):
-    stream = os.popen(f'mega-login {email} {password}')
+    stream = os.popen(f'mega-login "{email}" "{password}"')
     output = stream.read()
     return(output) 
 
@@ -20,7 +20,7 @@ def import_file(link):
     return(output)
 
 def export_file(filename):
-    stream = os.popen(f'mega-export -a -f {filename}')
+    stream = os.popen(f'mega-export -a -f "{filename}"')
     output = stream.read()
     print(output)
     return(output)
