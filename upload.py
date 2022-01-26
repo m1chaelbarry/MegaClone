@@ -52,7 +52,7 @@ def upload(_path, _O_email, _O_password, _M_email, _M_password):
     print(filename)
     exported_link = ExtractURL(clone.export_file(filename))
     clone.logout()
-    time.sleep(10)
+    # time.sleep(10) i think it isnt needed
     mirror_link = ExtractURL(clone.clone(exported_link, _M_email, _M_password))
 
     log(filename, _O_email, _O_password, exported_link, _M_email, _M_password, mirror_link)
