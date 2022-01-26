@@ -24,7 +24,7 @@ def mega_put(path):
 def log(_filename, Omail, Opass, Olink, Mmail, Mpass, Mlink):
     filename = _filename.strip("\'\n")
     print('Creating log file')
-    file_object = open(f'Export_log_{filename}.log', 'w')
+    file_object = open(f'{filename}.log', 'w')
     file_object.write(f'#### EXPORT LOG ####\nFile: {filename}\nOriginal:\n    {Omail}\n    {Opass}\n    {Olink}\nMirror:\n    {Mmail}\n    {Mpass}\n    {Mlink}')
     file_object.close()
 
