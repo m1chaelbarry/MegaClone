@@ -5,3 +5,4 @@ Export_log_*
 build
 dist
 *.spec
+test.py
