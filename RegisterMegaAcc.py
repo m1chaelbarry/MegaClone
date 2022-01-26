@@ -1,8 +1,8 @@
+import os, re, time, sys, http.client
 from faker import Faker
 from faker.providers import person, internet, misc
-import os, re, time, sys
-import http.client
 from clint import resources
+
 
 resources.init('michaelbarry', 'MegaClone')
 Mailsac_Api_Key = resources.user.read('api-key.txt').strip()
@@ -18,10 +18,10 @@ def generateCreds():
     gen_email = fake.lexify(text='????????????@mailsac.com')
     gen_password = fake.password(length=12)
     gen_name = fake.name()
-    return(gen_email, gen_password, gen_name)
+    return(gen_email, gen_password)
 
-def registerAcc(email, name, password):
-    stream = os.popen(f'megatools reg --scripted --register --email "{email}" --name "{name}" --password "{password}"')
+def registerAcc(email, password):
+    stream = os.popen(f'mega-signup "{email}" "{password}"')
     output = stream.read()
     return(output) 
 
@@ -61,15 +61,16 @@ def GetEmailContentFromID(email, id):
 def ExtractURL(url):
     return(re.search("(?P<url>https?://[^\s]+)", url).group("url"))
 
-def VerifyAcc(command, link):
-    verify_command = command.replace("@LINK@", link)
-    # print(verify_command)
-    stream = os.popen(verify_command)
+def VerifyAcc(_link, _email, _password):
+    stream = os.popen(f'mega-confirm "{_link}" "{_email}" "{_password}"')
     output = stream.read()
     return(output) 
 
 def startcmdserver():
-    os.popen(f'mega-whoami')
+    os.popen('mega-whoami')
+
+def logout():
+    os.popen('mega-logout')
 
 def AppendToFile():
     gen_email, gen_password = register()
@@ -91,13 +92,14 @@ def get_verify_link(_gen_email):
     
 def register():
     startcmdserver()
-    gen_email, gen_password, gen_name  = generateCreds()
+    logout()
+    gen_email, gen_password = generateCreds()
     # print(f"email: {gen_email}, name: {gen_name}, password: {gen_password}.")  
-    verify = registerAcc(gen_email, gen_name, gen_password)
+    registerAcc(gen_email, gen_password)
     link = get_verify_link(gen_email)
     # print(verify)
     # print(link)
-    VerifyAcc(verify, link)
+    VerifyAcc(link, gen_email, gen_password)
     Credentials = [gen_email, gen_password]
     return(Credentials)
 
