@@ -52,8 +52,12 @@ def clone_handler():
     menu()
 
 def upload_handler():
-    link  = prompt.query("Path to file/dir to upload >>")
+    link  = (prompt.query("Path to file/dir to upload >>")).strip("'\"")
+    with indent(5):
+        puts(colored.red('Generating original account...'))
     Oemail,Opassword = register()
+    with indent(5):
+        puts(colored.red('Generating mirror account...'))
     Memail, Mpassword = register()
     exported, mirrored = upload(link, Oemail, Opassword, Memail, Mpassword)
     with indent(5, quote=colored.cyan(' |')):
