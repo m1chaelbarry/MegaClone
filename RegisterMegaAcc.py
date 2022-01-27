@@ -7,7 +7,7 @@ from clint.textui import prompt
 
 resources.init('michaelbarry', 'MegaClone')
 
-if resources.user.read('api-key.txt') == None or '' or '\n':
+if resources.user.read('api-key.txt') == None  or '':
     print('You dont have api key set.')
     print('%s created.' % resources.user.path)
     Mailsac_Api_Key = prompt.query("Your api key >>")
