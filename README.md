@@ -36,4 +36,9 @@ Also there is exe file in [releases](https://github.com/m1chaelbarry/MegaClone/r
 stop using faker.py, its really overkill and additional dependency
 
 ### Contact
+
+Use it if you HAVE to, for issues with script use githubs issues please.
+
 Discord: michaelbarry#6568
+
+Email: mbaryczka@protonmail.com
