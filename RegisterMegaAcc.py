@@ -2,15 +2,18 @@ import os, re, time, sys, http.client
 from faker import Faker
 from faker.providers import person, internet, misc
 from clint import resources
+from clint.textui import prompt
 
 
 resources.init('michaelbarry', 'MegaClone')
-Mailsac_Api_Key = resources.user.read('api-key.txt').strip()
 
-if resources.user.read('api-key.txt') == None:
-    print('%s created.' % resources.user.path, 'write your api key here')
-    resources.user.write('api-key.txt', "api-key")
-    exit()
+if resources.user.read('api-key.txt') == None or '' or '\n':
+    print('You dont have api key set.')
+    print('%s created.' % resources.user.path)
+    Mailsac_Api_Key = prompt.query("Your api key >>")
+    resources.user.write('api-key.txt', Mailsac_Api_Key)
+
+Mailsac_Api_Key = resources.user.read('api-key.txt').strip()
 
 fake = Faker()
 
