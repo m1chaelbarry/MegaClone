@@ -28,7 +28,7 @@ def Logo():
     puts(colored.red('                       \$$$$$$  |                                                      '))
     puts(colored.red('                        \______/                                                       '))
     print()
-    puts(colored.red('Version: 0.2.0'))
+    puts(colored.red('Version: 0.2.1'))
     print()
 
 def reg_handler():
