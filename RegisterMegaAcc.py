@@ -20,7 +20,6 @@ fake = Faker()
 def generateCreds():
     gen_email = fake.lexify(text='????????????@mailsac.com')
     gen_password = fake.password(length=12)
-    gen_name = fake.name()
     return(gen_email, gen_password)
 
 def registerAcc(email, password):
