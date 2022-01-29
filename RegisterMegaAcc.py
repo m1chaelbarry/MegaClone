@@ -90,16 +90,34 @@ def get_verify_link(_gen_email):
         get_verify_link(_gen_email)
     return(link)
 
+def CheckApi(api_key):
+    conn = http.client.HTTPSConnection("mailsac.com")
+
+    headersList = {
+    "Mailsac-Key": api_key 
+    }
+
+    payload = ""
+
+    conn.request("GET", "/api/me", payload, headersList)
+    response = conn.getresponse()
+    result = response.read().decode("utf-8")
+
+    if result == "null":
+        return False
+    else:
+        return True
+
     
 def register():
+    if CheckApi(Mailsac_Api_Key) == False:
+        print('api key doesnt work')
+        exit()
     startcmdserver()
     logout()
     gen_email, gen_password = generateCreds()
-    # print(f"email: {gen_email}, name: {gen_name}, password: {gen_password}.")  
     registerAcc(gen_email, gen_password)
     link = get_verify_link(gen_email)
-    # print(verify)
-    # print(link)
     VerifyAcc(link, gen_email, gen_password)
     Credentials = [gen_email, gen_password]
     return(Credentials)
