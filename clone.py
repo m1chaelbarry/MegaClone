@@ -22,7 +22,7 @@ def import_file(link):
 def export_file(filename):
     stream = os.popen(f'mega-export -a -f "{filename}"')
     output = stream.read()
-    print(output)
+    # print(output)
     return(output)
 
 def mega_ls():
@@ -32,14 +32,14 @@ def mega_ls():
 
 def clone(_link, _email, _password):
     # os.popen('$env:PATH += ";$env:LOCALAPPDATA\MEGAcmd"')
-    print('Logging in...')
+    # print('Logging in...')
     login(_email, _password)
-    print('Importing file...')
+    # print('Importing file...')
     import_file(_link)
     filename = str(mega_ls()).strip("'")
-    print(filename)
+    # print(filename)
     mirror_link = ExtractURL(export_file(filename))
-    print('Logging out...')
+    # print('Logging out...')
     logout()
     return(mirror_link)
     
