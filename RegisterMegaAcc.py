@@ -1,6 +1,4 @@
-import os, re, time, sys, http.client
-from faker import Faker
-from faker.providers import person, internet, misc
+import os, re, time, sys, http.client, string, random
 from clint import resources
 from clint.textui import prompt
 
@@ -15,11 +13,12 @@ if resources.user.read('api-key.txt') == None  or '':
 
 Mailsac_Api_Key = resources.user.read('api-key.txt').strip()
 
-fake = Faker()
+def id_generator(size=6, chars=string.ascii_letters + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 def generateCreds():
-    gen_email = fake.lexify(text='????????????@mailsac.com')
-    gen_password = fake.password(length=12)
+    gen_email = f'{id_generator(10)}@mailsac.com'
+    gen_password = id_generator(12)
     return(gen_email, gen_password)
 
 def registerAcc(email, password):
