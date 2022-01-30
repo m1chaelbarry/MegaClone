@@ -1,4 +1,4 @@
-![megaclone](https://user-images.githubusercontent.com/69900794/151705121-86ee9dbe-95c5-4404-b4ee-5e31a607f0cf.png)
+![megaclone.py](https://user-images.githubusercontent.com/69900794/151705198-3599d2f8-319d-45e6-9649-54789b91a606.png)
 
 # MegaClone
 you need to 
@@ -27,8 +27,6 @@ upload.py uploads file or directory to new "Original" account, then imports it t
 `python.exe .\clone.py <mega link>`
 
 `python.exe .\upload.py <path to file or directory>`
-
-![megaclone.py](https://user-images.githubusercontent.com/69900794/151705198-3599d2f8-319d-45e6-9649-54789b91a606.png)
 
 ---
 
