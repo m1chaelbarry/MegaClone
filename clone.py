@@ -1,5 +1,8 @@
 from RegisterMegaAcc import ExtractURL, register
 import os, sys
+from rich import print
+from rich.spinner import Spinner
+from rich.live import Live
 
 
 
@@ -46,5 +49,14 @@ def clone(_link, _email, _password):
 
 if __name__ == "__main__":
     link = sys.argv[1]
-    email, password = register()
-    clone(link, email, password)
+    link_stripped = link.strip("'\"")
+    with Live(Spinner('dots', text='Registering account...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            email, password = register()
+            break
+    with Live(Spinner('dots', text='Cloning...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            exported = clone(link, email, password)
+            break
+    print()
+    print(f'[cyan]Cloned link: {exported}[/cyan]')

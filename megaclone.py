@@ -52,7 +52,7 @@ def clone_handler():
     menu()
 
 def upload_handler():
-    link  = (Prompt.ask("Path to file/dir to upload")).strip("'\"")
+    path  = (Prompt.ask("Path to file/dir to upload")).strip("'\"")
     with Live(Spinner('dots', text='Registering original account...', style='blue'), refresh_per_second=20, transient=True):
         while True:
             Oemail,Opassword = register()
@@ -61,10 +61,7 @@ def upload_handler():
         while True:
             Memail, Mpassword = register()
             break
-    with Live(Spinner('dots', text='Uploading...', style='blue'), refresh_per_second=20, transient=True):
-        while True:
-            exported, mirrored = upload(link, Oemail, Opassword, Memail, Mpassword)
-            break
+    exported, mirrored = upload(path, Oemail, Opassword, Memail, Mpassword)
     print()
     print(f'[cyan]Original link: {exported}[/cyan]')
     print(f'[cyan]Mirror link: {mirrored}[/cyan]')
@@ -91,6 +88,7 @@ def menu():
         SetApiKey()
         menu()
     elif option == 5:
+        print('[bold blue]Goodbye!')
         exit()
 
 if __name__ == "__main__":
