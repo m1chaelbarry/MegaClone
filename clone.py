@@ -1,5 +1,8 @@
 from RegisterMegaAcc import ExtractURL, register
 import os, sys
+from rich import print
+from rich.spinner import Spinner
+from rich.live import Live
 
 
 
@@ -22,7 +25,7 @@ def import_file(link):
 def export_file(filename):
     stream = os.popen(f'mega-export -a -f "{filename}"')
     output = stream.read()
-    print(output)
+    # print(output)
     return(output)
 
 def mega_ls():
@@ -32,19 +35,28 @@ def mega_ls():
 
 def clone(_link, _email, _password):
     # os.popen('$env:PATH += ";$env:LOCALAPPDATA\MEGAcmd"')
-    print('Logging in...')
+    # print('Logging in...')
     login(_email, _password)
-    print('Importing file...')
+    # print('Importing file...')
     import_file(_link)
     filename = str(mega_ls()).strip("'")
-    print(filename)
+    # print(filename)
     mirror_link = ExtractURL(export_file(filename))
-    print('Logging out...')
+    # print('Logging out...')
     logout()
     return(mirror_link)
     
 
 if __name__ == "__main__":
     link = sys.argv[1]
-    email, password = register()
-    clone(link, email, password)
+    link_stripped = link.strip("'\"")
+    with Live(Spinner('dots', text='Registering account...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            email, password = register()
+            break
+    with Live(Spinner('dots', text='Cloning...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            exported = clone(link, email, password)
+            break
+    print()
+    print(f'[cyan]Cloned link: {exported}[/cyan]')

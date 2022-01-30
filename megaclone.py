@@ -1,94 +1,100 @@
-from clint.textui import prompt, puts, colored, indent
-from clint import resources
-from RegisterMegaAcc import register
+from RegisterMegaAcc import register, CheckApiKey, SetApiKey
 from clone import clone
 from upload import upload
+import dotenv
+from rich import print
+from rich.prompt import Prompt, IntPrompt
+from rich.spinner import Spinner
+from rich.live import Live
 
-resources.init('michaelbarry', 'MegaClone')
-
-def checkApiKey():
-    Mailsac_Api_Key = resources.user.read('api-key.txt').strip()
-    if resources.user.read('api-key.txt') == None:
-        Mailsac_Api_Key = prompt.query("Your api key >>")
-        print('%s created.' % resources.user.path)
-        resources.user.write('api-key.txt', Mailsac_Api_Key)
-
+dotenv.load_dotenv()
 
 def Logo():
     print()
-    puts(colored.red('$$\      $$\                                $$$$$$\  $$\                               '))
-    puts(colored.red('$$$\    $$$ |                              $$  __$$\ $$ |                              '))
-    puts(colored.red('$$$$\  $$$$ | $$$$$$\   $$$$$$\   $$$$$$\  $$ /  \__|$$ | $$$$$$\  $$$$$$$\   $$$$$$\  '))
-    puts(colored.red('$$\$$\$$ $$ |$$  __$$\ $$  __$$\  \____$$\ $$ |      $$ |$$  __$$\ $$  __$$\ $$  __$$\ '))
-    puts(colored.red('$$ \$$$  $$ |$$$$$$$$ |$$ /  $$ | $$$$$$$ |$$ |      $$ |$$ /  $$ |$$ |  $$ |$$$$$$$$ |'))
-    puts(colored.red('$$ |\$  /$$ |$$   ____|$$ |  $$ |$$  __$$ |$$ |  $$\ $$ |$$ |  $$ |$$ |  $$ |$$   ____|'))
-    puts(colored.red('$$ | \_/ $$ |\$$$$$$$\ \$$$$$$$ |\$$$$$$$ |\$$$$$$  |$$ |\$$$$$$  |$$ |  $$ |\$$$$$$$\ '))
-    puts(colored.red('\__|     \__| \_______| \____$$ | \_______| \______/ \__| \______/ \__|  \__| \_______|'))
-    puts(colored.red('                       $$\   $$ |                                                      '))
-    puts(colored.red('                       \$$$$$$  |                                                      '))
-    puts(colored.red('                        \______/                                                       '))
+    print('[bold blue]$$\      $$\                                $$$$$$\  $$\                               [/bold blue]')
+    print('[bold blue]$$$\    $$$ |                              $$  __$$\ $$ |                              [/bold blue]')
+    print('[bold blue]$$$$\  $$$$ | $$$$$$\   $$$$$$\   $$$$$$\  $$ /  \__|$$ | $$$$$$\  $$$$$$$\   $$$$$$\  [/bold blue]')
+    print('[bold blue]$$\$$\$$ $$ |$$  __$$\ $$  __$$\  \____$$\ $$ |      $$ |$$  __$$\ $$  __$$\ $$  __$$\ [/bold blue]')
+    print('[bold blue]$$ \$$$  $$ |$$$$$$$$ |$$ /  $$ | $$$$$$$ |$$ |      $$ |$$ /  $$ |$$ |  $$ |$$$$$$$$ |[/bold blue]')
+    print('[bold blue]$$ |\$  /$$ |$$   ____|$$ |  $$ |$$  __$$ |$$ |  $$\ $$ |$$ |  $$ |$$ |  $$ |$$   ____|[/bold blue]')
+    print('[bold blue]$$ | \_/ $$ |\$$$$$$$\ \$$$$$$$ |\$$$$$$$ |\$$$$$$  |$$ |\$$$$$$  |$$ |  $$ |\$$$$$$$\ [/bold blue]')
+    print('[bold blue]\__|     \__| \_______| \____$$ | \_______| \______/ \__| \______/ \__|  \__| \_______|[/bold blue]')
+    print('[bold blue]                       $$\   $$ |                                                      [/bold blue]')
+    print('[bold blue]                       \$$$$$$  |                                                      [/bold blue]')
+    print('[bold blue]                        \______/                                                       [/bold blue]')
     print()
-    puts(colored.red('Version: 0.2.2'))
+    print('[blue]Version: 0.3.0[/blue]')
     print()
 
 def reg_handler():
-    with indent(5, quote=colored.cyan(' |')):
-        puts(f'Registering Mega Account...')
-    email, password = register()
-    with indent(5, quote=colored.cyan(' |')):
-        puts(colored.magenta(f'Email: {email}'))
-        puts(colored.magenta(f'Password: {password}'))
+    with Live(Spinner('dots', text='Generating Mega account...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            email, password = register()
+            break
+    print()
+    print(f'[cyan]Email: {email}[/cyan]')
+    print(f'[cyan]Password: {password}[/cyan]')
     menu()
 
-def api():
-        Mailsac_Api_Key = prompt.query("Your api key >>")
-        resources.user.write('api-key.txt', Mailsac_Api_Key)
-        menu()
 
 def clone_handler():
-    link  = prompt.query("Mega link >>")
-    email, password = register()
-    mirror_link = clone(link, email, password)
-    with indent(5, quote=colored.cyan(' |')):
-        puts(colored.magenta(f'Mega link: {mirror_link}'))
+    link  = Prompt.ask("Mega link")
+    with Live(Spinner('dots', text='Generating Mega account...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            email, password = register()
+            break
+    with Live(Spinner('dots', text='Cloning link...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            mirror_link = clone(link, email, password)
+            break
+    print()
+    print(f'[cyan]Mega link: {mirror_link}[/cyan]')
     menu()
 
 def upload_handler():
-    link  = (prompt.query("Path to file/dir to upload >>")).strip("'\"")
-    with indent(5):
-        puts(colored.red('Generating original account...'))
-    Oemail,Opassword = register()
-    with indent(5):
-        puts(colored.red('Generating mirror account...'))
-    Memail, Mpassword = register()
-    exported, mirrored = upload(link, Oemail, Opassword, Memail, Mpassword)
-    with indent(5, quote=colored.cyan(' |')):
-        puts(colored.magenta(f'Original link: {exported}'))
-        puts(colored.magenta(f'Mirror link: {mirrored}'))
+    path  = (Prompt.ask("Path to file/dir to upload")).strip("'\"")
+    with Live(Spinner('dots', text='Registering original account...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            Oemail,Opassword = register()
+            break
+    with Live(Spinner('dots', text='Registering mirror account...', style='blue'), refresh_per_second=20, transient=True):
+        while True:
+            Memail, Mpassword = register()
+            break
+    exported, mirrored = upload(path, Oemail, Opassword, Memail, Mpassword)
+    print()
+    print(f'[cyan]Original link: {exported}[/cyan]')
+    print(f'[cyan]Mirror link: {mirrored}[/cyan]')
     menu()
 
 def menu():
-    inst_options = [{'selector':'1','prompt':'Register Mega account','return':'reg'},
-            {'selector':'2','prompt':'Clone link to new account','return':'clone'},
-            {'selector':'3','prompt':'Upload file/dir to new account, then import it to another','return':'upload'},
-            {'selector':'4','prompt':'change your api key','return':'api'},
-            {'selector':'q','prompt':'quit','return':'quit'}]
-    inst = prompt.options("Choose option:", inst_options)
+    print()
+    print('[blue][1][/blue] Register Mega account')
+    print('[blue][2][/blue] Clone link to new account')
+    print('[blue][3][/blue] Upload file/dir to new account, then import it to another')
+    print('[blue][4][/blue] Change your API key')
+    print('[blue][5][/blue] Exit')
+    print()
+
+    option = IntPrompt.ask('Choose option')
     
-    if inst == 'reg':
+    if option == 1:
         reg_handler()
-    elif inst == 'clone':
+    elif option == 2:
         clone_handler()
-    elif inst == 'upload':
+    elif option == 3:
         upload_handler()
-    elif inst == 'api':
-        api()
-    elif inst == 'quit':
+    elif option == 4:
+        SetApiKey()
+        menu()
+    elif option == 5:
+        print('[bold blue]Goodbye!')
         exit()
 
 if __name__ == "__main__":
     Logo()
-    checkApiKey()
+    CheckApiKey()
+    print('Your api key is: [bold green]valid[/bold green]')
     menu()
 
 
