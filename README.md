@@ -1,5 +1,7 @@
 ![megaclone.py](https://user-images.githubusercontent.com/69900794/151705198-3599d2f8-319d-45e6-9649-54789b91a606.png)
 
+# ON HOLD! using MegaCMD and steering it through python doesnt work well, and I cant get mega sdk to work so project is on hold.
+
 # MegaClone
 you need to 
 `pip install -r requirements.txt`
